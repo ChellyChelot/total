@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://www.springframework.org/schema/beans" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" 
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
-
+	
 	<mvc:annotation-driven />
 	<mvc:default-servlet-handler />
 	<context:component-scan base-package="org.itbank.app" />
@@ -21,10 +22,11 @@
 	<bean class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
 		<property name="definitions">
 			<list>
+				<value>/WEB-INF/config/tiles-config.xml</value>
 			</list>
 		</property>
 	</bean>
-	<!-- about DataBase -->
+	<!-- about DataBase  -->	
 	<context:property-placeholder location="classpath:/jdbc.properties" />
 	<bean class="com.mchange.v2.c3p0.ComboPooledDataSource" id="ds">
 		<property name="driverClass" value="oracle.jdbc.driver.OracleDriver" />
@@ -36,6 +38,7 @@
 		<property name="dataSource" ref="ds" />
 		<property name="mapperLocations">
 			<list>
+				<value>/WEB-INF/mapper/*-mapper.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -49,6 +52,6 @@
 	</bean>
 	<!-- about converter -->
 	<bean class="com.fasterxml.jackson.databind.ObjectMapper" />
-
+	
 
 </beans>
